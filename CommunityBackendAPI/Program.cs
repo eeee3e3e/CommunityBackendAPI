@@ -22,23 +22,17 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
-else
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-app.UseHttpsRedirection();
-
+//}
+app.UseDeveloperExceptionPage();  // 仅在开发环境中启用详细错误信息
+app.UseHttpsRedirection();  // 如果要启用 HTTPS，请保留此行
+app.UseUrls("http://0.0.0.0:8080");
 app.UseAuthorization();
 
 app.MapControllers();
-
-// Bind to all IP addresses (0.0.0.0) and port 8080
-//app.Run("http://0.0.0.0:8080");  // 绑定到0.0.0.0, 使外部请求可访问
+ 
 
 app.Run();  // 绑定到0.0.0.0, 使外部请求可访问
