@@ -35,4 +35,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // Bind to all IP addresses (0.0.0.0) and port 8080
-app.Run("http://0.0.0.0:8080");  // 绑定到0.0.0.0, 使外部请求可访问
+//app.Run("http://0.0.0.0:8080");  // 绑定到0.0.0.0, 使外部请求可访问
+
+app.Run();  // 绑定到0.0.0.0, 使外部请求可访问
