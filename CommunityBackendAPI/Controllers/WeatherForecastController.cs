@@ -21,7 +21,7 @@ namespace CommunityBackendAPI.Controllers
         {
             _logger = logger;
         }
-
+        [AllowAnonymous]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
