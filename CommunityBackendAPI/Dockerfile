@@ -11,19 +11,19 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # 复制 .csproj 文件并还原依赖项 
-COPY ["CommunityBackendAPI/CommunityBackendAPI.csproj", "CommunityBackendAPI/"]
-RUN dotnet restore "./CommunityBackendAPI/./CommunityBackendAPI.csproj"
+COPY ["CommunityBackendAPI.csproj", "./"]
+RUN dotnet restore "./CommunityBackendAPI.csproj"
 # 复制其余的源代码
 COPY . .
 
 # 设置工作目录并构建项目 
-WORKDIR "/src/CommunityBackendAPI"
-RUN dotnet build "./CommunityBackendAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src"
+RUN dotnet build "CommunityBackendAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # 发布应用程序
 FROM build AS publish 
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./CommunityBackendAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CommunityBackendAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # 使用基于 .NET 运行时的镜像作为最终镜像
 FROM base AS final
