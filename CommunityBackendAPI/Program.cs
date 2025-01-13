@@ -18,6 +18,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8080);  // 监听所有 IP 地址的 8080 端口
+});
 
 var app = builder.Build();
 
@@ -26,10 +30,10 @@ var app = builder.Build();
 //{
     app.UseSwagger();
     app.UseSwaggerUI();
-//}
+//} 
 app.UseDeveloperExceptionPage();  // 仅在开发环境中启用详细错误信息
 app.UseHttpsRedirection();  // 如果要启用 HTTPS，请保留此行
-app.UseUrls("http://0.0.0.0:8080");
+
 app.UseAuthorization();
 
 app.MapControllers();
