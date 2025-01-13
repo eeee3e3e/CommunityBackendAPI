@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web.Resource;
 
 namespace CommunityBackendAPI.Controllers
-{ 
+{
+
+    [AllowAnonymous]
     [ApiController]
-    [Route("[controller]")]
-    [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
+    [Route("[controller]")] 
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -19,7 +20,8 @@ namespace CommunityBackendAPI.Controllers
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-        } 
+        }
+        [AllowAnonymous]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
