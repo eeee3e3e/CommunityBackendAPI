@@ -14,11 +14,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.WebHost.UseUrls("http://*:8080");
+builder.WebHost.UseUrls("http://0.0.0.0:8080");
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
+});
+
 
 app.UseDeveloperExceptionPage();  // 仅在开发环境中启用详细错误信息
 app.UseHttpsRedirection();  // 如果要启用 HTTPS，请保留此行
