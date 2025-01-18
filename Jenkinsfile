@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy to Application Server') {
             steps {
-                sshagent(['[SSH_CREDENTIALS_ID]']) {
+                sshagent([SSH_CREDENTIALS_ID]) {
                     sh """
                         ssh root@${APP_SERVER} "
                             cd /path/to/deployment/directory &&
