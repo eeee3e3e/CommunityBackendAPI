@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "communitybackendapi:latest"
-        APP_SERVER = "38.55.235.162"
-        SSH_CREDENTIALS_ID = 'b8b640ea-cf83-48cf-a16b-b71ec8391baa'
+        APP_SERVER = "45.192.108.44"
+        SSH_CREDENTIALS_ID = 'f3bbe46b-0002-467c-924e-acc00d699fa5'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: 'b8b640ea-cf83-48cf-a16b-b71ec8391baa', url: 'https://github.com/eeee3e3e/CommunityBackendAPI.git'
+                git credentialsId: 'f3bbe46b-0002-467c-924e-acc00d699fa5', url: 'https://github.com/eeee3e3e/CommunityBackendAPI.git'
             }
         }
 
